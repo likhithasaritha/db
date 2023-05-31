@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classic Dashboard</title>
+  <style>
+    /* CSS for the dashboard layout */
+    body {
+      background-color: #f8f8f8;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      max-width: 800px;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* CSS for the calendar */
+    .calendar {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 24px;
+    }
+
+    /* CSS for the to-do list */
+    .todo {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* CSS for the notifications */
+    .notifications {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* CSS for the emails */
+    .emails {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* CSS for the header */
+    .header {
+      background-color: #000;
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+      font-size: 24px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    /* CSS for the input and button */
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #222;
+    }
+
+    /* CSS for the lists */
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    /* CSS for the notifications and emails content */
+    li strong {
+      color: #000;
+    }
+
+    /* CSS for the footer */
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="calendar">
+      <div class="header">Calendar</div>
+      <div id="calendar"></div>
+    </div>
+    <div class="todo">
+      <div class="header">To-Do List</div>
+      <ul id="todo-list"></ul>
+      <input type="text" id="todo-input" placeholder="Add an item">
+      <button onclick="addItem()">Add</button>
+    </div>
+    <div class="notifications">
+      <div class="header">Notifications</div>
+      <ul id="notifications-list"></ul>
+    </div>
+    <div class="emails">
+      <div class="header">Emails</div>
+      <ul id="emails-list"></ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2023 Alekhya
+  </div>
+
+  <script>
+    // JavaScript code for functionality
+
+    // Calendar
+    const calendarContainer = document.getElementById('calendar');
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    calendarContainer.innerHTML = today.toLocaleDateString('en-US', options);
+
+    // To-Do List
+    const todoList = document.getElementById('todo-list');
+    const todoInput = document.getElementById('todo-input');
+
+    function addItem() {
+      const item = document.createElement('li');
+      item.innerText = todoInput.value;
+      todoList.appendChild(item);
+      todoInput.value = '';
+    }
+
+    // Notifications
+    const notificationsList = document.getElementById('notifications-list');
+
+    function addNotification(message) {
+      const notification = document.createElement('li');
+      notification.innerText = message;
+      notificationsList.appendChild(notification);
+    }
+
+    addNotification('You have a new notification.');
+    addNotification('Don\'t forget to complete your tasks.');
+
+    // Emails
+    const emailsList = document.getElementById('emails-list');
+
+    function addEmail(sender, subject) {
+      const email = document.createElement('li');
+      email.innerHTML = `<strong>${sender}</strong>: ${subject}`;
+      emailsList.appendChild(email);
+    }
+
+    addEmail('John Doe', 'Regarding our meeting');
+    addEmail('Jane Smith', 'Your monthly report');
+
+  </script>
+</body>
+</html>
